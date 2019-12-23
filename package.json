@@ -7,7 +7,7 @@
     "dist"
   ],
   "scripts": {
-    "transpile": "babel src -d dist --copy-files"
+    "prepublish": "babel src -d dist --source-maps --copy-files"
   },
   "author": "",
   "license": "ISC",
