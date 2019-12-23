@@ -78,23 +78,27 @@ class AsciinemaPlayer extends React.Component {
   segmentClass(attrs) {
     let cls = '';
 
-    if (attrs.fg !== undefined) {
-      cls = `fg-${attrs.fg}`;
+    let fg = attrs.get('fg');
+
+    if (fg !== undefined) {
+      cls = `fg-${fg}`;
     }
 
-    if (attrs.bg !== undefined) {
-      cls = `${cls} bg-${attrs.bg} `;
+    let bg = attrs.get('bg');
+
+    if (bg !== undefined) {
+      cls = `${cls} bg-${bg} `;
     }
 
-    if (attrs.bold) {
+    if (attrs.get('bold')) {
       cls = `${cls} bright`;
     }
 
-    if (attrs.italic) {
+    if (attrs.get('italic')) {
       cls = `${cls} italic`;
     }
 
-    if (attrs.underline) {
+    if (attrs.get('underline')) {
       cls = `${cls} underline`;
     }
 
