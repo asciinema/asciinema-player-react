@@ -55,12 +55,8 @@ class AsciinemaPlayer extends React.Component {
         <div className="asciinema-player asciinema-theme-asciinema">
           <pre className="asciinema-terminal font-small" style={{width: this.terminalWidth(), height: this.terminalHeight()}}>
             {this.state.lines.map(line =>
-              <span key={line.id} className="line">
-                {line.segments.map(segment =>
-                  <span className={this.segmentClass(segment[1])} style={this.segmentStyle(segment[1])}>{segment[0]}</span>
+              <Line key={line.id} segments={line.segments} />
                 )}
-              </span>
-            )}
           </pre>
         </div>
       </div>
@@ -73,6 +69,20 @@ class AsciinemaPlayer extends React.Component {
 
   terminalHeight() {
     return (1.3333333333 * (this.state.height || 24)) + 'em';
+  }
+}
+
+class Line extends React.Component {
+  render() {
+    return <span className="line">
+      {this.props.segments.map(segment =>
+        <span className={this.segmentClass(segment[1])} style={this.segmentStyle(segment[1])}>{segment[0]}</span>
+      )}
+    </span>
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return this.props.segments !== nextProps.segments;
   }
 
   segmentClass(attrs) {
