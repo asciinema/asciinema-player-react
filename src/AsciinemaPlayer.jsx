@@ -56,7 +56,7 @@ class AsciinemaPlayer extends React.Component {
           <pre className="asciinema-terminal font-small" style={{width: this.terminalWidth(), height: this.terminalHeight()}}>
             {this.state.lines.map(line =>
               <Line key={line.id} segments={line.segments} />
-                )}
+            )}
           </pre>
         </div>
       </div>
@@ -90,13 +90,13 @@ class Line extends React.Component {
 
     let fg = attrs.get('fg');
 
-    if (fg !== undefined) {
+    if (typeof fg == 'number') {
       cls = `fg-${fg}`;
     }
 
     let bg = attrs.get('bg');
 
-    if (bg !== undefined) {
+    if (typeof bg == 'number') {
       cls = `${cls} bg-${bg} `;
     }
 
@@ -116,7 +116,21 @@ class Line extends React.Component {
   }
 
   segmentStyle(attrs) {
-    return {};
+    let style = {};
+
+    let fg = attrs.get('fg');
+
+    if (typeof fg == 'string') {
+      style['color'] = fg;
+    }
+
+    let bg = attrs.get('bg');
+
+    if (typeof bg == 'string') {
+      style['background-color'] = bg;
+    }
+
+    return style;
   }
 }
 
