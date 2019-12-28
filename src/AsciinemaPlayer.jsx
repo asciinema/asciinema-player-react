@@ -100,15 +100,15 @@ class Line extends React.Component {
       cls = `${cls} bg-${bg} `;
     }
 
-    if (attrs.get('bold')) {
+    if (attrs.has('bold')) {
       cls = `${cls} bright`;
     }
 
-    if (attrs.get('italic')) {
+    if (attrs.has('italic')) {
       cls = `${cls} italic`;
     }
 
-    if (attrs.get('underline')) {
+    if (attrs.has('underline')) {
       cls = `${cls} underline`;
     }
 
