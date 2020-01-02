@@ -112,21 +112,22 @@ class Line extends React.Component {
       cls = `${cls} underline`;
     }
 
-    return cls;
+    return cls === '' ? null : cls;
   }
 
   segmentStyle(attrs) {
-    let style = {};
+    let style = null;
 
     let fg = attrs.get('fg');
 
     if (typeof fg == 'string') {
-      style['color'] = fg;
+      style = {color: fg};
     }
 
     let bg = attrs.get('bg');
 
     if (typeof bg == 'string') {
+      style = style || {};
       style['background-color'] = bg;
     }
 
