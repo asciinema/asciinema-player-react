@@ -35,15 +35,9 @@ class AsciinemaPlayer extends React.Component {
   }
 
   frame() {
-    // console.log('frame!');
     requestAnimationFrame(this.frame);
     this.setState({lines: this.core.getLines()});
-    // this.refreshTerminal();
   }
-
-  // refreshTerminal() {
-  //   this.setState({lines: this.core.getLines()});
-  // }
 
   componentWillUnmount() {
     this.core.stop()
