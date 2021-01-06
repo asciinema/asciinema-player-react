@@ -36,7 +36,17 @@ class AsciinemaPlayer extends React.Component {
 
   frame() {
     requestAnimationFrame(this.frame);
-    this.setState({lines: this.core.getLines()});
+
+    let changedLines = this.core.getChangedLines();
+    let lines = this.state.lines;
+
+    if (changedLines.size > 0) {
+      changedLines.forEach((line, i) => {
+        lines[i] = line;
+      })
+
+      this.setState({lines: lines});
+    }
   }
 
   componentWillUnmount() {
